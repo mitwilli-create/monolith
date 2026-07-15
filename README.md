@@ -117,7 +117,7 @@ onboards by adding a profile, zero code changes.
 
 ```sh
 npm run dev            # tsx watch
-npm test               # vitest: 109 tests, all pure-function
+npm test               # vitest: 208 tests
 npm run typecheck
 ```
 
@@ -125,3 +125,10 @@ npm run typecheck
 
 Outfit-of-the-day + wardrobe photos · trend/runway/sales scanning agents ·
 investment advice · multi-user onboarding UI · campaign activation UI.
+
+## About this repository
+
+This is the public mirror of MONOLITH's working repository. The working repo
+stays private because it carries live beta operations. This mirror begins at
+the public-hygiene baseline and tracks the same code from there, including the
+overnight design uplevel documented in `docs/MORNING-REVIEW.md`.

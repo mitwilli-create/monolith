@@ -12,7 +12,7 @@ The app now opens like a show: an original, CSS-only runway film at the top (nea
 
 ## Changelog by surface
 
-Screenshots for every surface, before and after, mobile and desktop, live in `docs/review-screens/before/` and `docs/review-screens/after/`. A reduced-motion still is at `after/reduced-motion-still--mobile.png`. Full sets also in the session scratchpad (`shots-before/`, `shots-after/`, `shots-after-reduced/`).
+Screenshots for the capital, intake, size, vault, and wear-prompt surfaces, before and after, mobile and desktop, live in `docs/review-screens/before/` and `docs/review-screens/after/`. The verdict, quest, and reduced-motion captures are omitted from this public mirror; they were taken against personal profile data and can be regenerated from the demo seed.
 
 ### 1. Global design system (`5bbd106`)
 - `public/app.css` consolidated from 515 lines of append-history into one tokenized system: bone/ink palette plus a dark-stage token set, type scale, spacing rhythm, motion primitives (`surface-in`, `breathe`, ease `cubic-bezier(0.22,1,0.36,1)`).
@@ -44,7 +44,7 @@ Screenshots for every surface, before and after, mobile and desktop, live in `do
 
 ### 6. Polish (final commit)
 - Tappable rows (history, quest list) invite quietly on hover.
-- Full before/after screenshot sets committed under `docs/review-screens/`.
+- Before/after screenshot sets committed under `docs/review-screens/` (verdict and quest captures omitted from the public mirror).
 
 ## app.ts diffs, since that file was guarded
 
