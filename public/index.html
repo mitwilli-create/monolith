@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#e9e6df" />
+  <meta name="theme-color" content="#0f0e0c" />
   <meta name="color-scheme" content="light" />
   <title>MONOLITH</title>
   <link rel="manifest" href="/manifest.webmanifest" />
@@ -13,6 +13,23 @@
   <link rel="stylesheet" href="/app.css" />
 </head>
 <body>
+  <!-- The runway film: one long, unhurried cut above the fold. Pure CSS,
+       zero network weight. It pauses when scrolled away (observer below)
+       and freezes into a lit still under prefers-reduced-motion.
+       SEAM FOR REAL FOOTAGE: to run licensed or original film here instead,
+       drop a <video class="rw-film" muted autoplay loop playsinline
+       poster="..."> as the first child of .rw-scene; the CSS already
+       grades it (cover, grayscale, patient). The CSS composition beneath
+       remains the low-bandwidth and reduced-motion fallback. -->
+  <div id="runway" aria-hidden="true">
+    <div class="rw-scene">
+      <div class="rw-floor"></div>
+      <div class="rw-monolith"></div>
+      <div class="rw-light"></div>
+      <div class="rw-veil"></div>
+    </div>
+  </div>
+
   <header id="topbar">
     <div>
       <div class="wordmark">MONOLITH</div>
@@ -30,6 +47,23 @@
     <button data-tab="capital">CAPITAL<span class="tabsub">spend</span></button>
   </nav>
 
+  <script>
+    // The film pauses once scrolled offstage: no offscreen animation work.
+    (function () {
+      var rw = document.getElementById("runway");
+      if (!rw) return;
+      var ticking = false;
+      function check() {
+        ticking = false;
+        var r = rw.getBoundingClientRect();
+        rw.classList.toggle("rw-paused", r.bottom <= 0);
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { ticking = true; window.requestAnimationFrame(check); }
+      }, { passive: true });
+      check();
+    })();
+  </script>
   <script src="/app.js"></script>
 </body>
 </html>

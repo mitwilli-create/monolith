@@ -89,20 +89,147 @@ input:focus, select:focus, textarea:focus { outline: none; }
   }
 }
 
+/* --------------------------------------------------------- the runway film */
+/* One long, unhurried cut: a dark stage, the app icon's monolith restaged,
+   a single spotlight pass (56s), a barely perceptible push-in (90s).
+   Pure CSS: zero bytes over the network, pausing when scrolled away
+   (observer in index.html). Under prefers-reduced-motion the pass and the
+   push are removed and the explicit overrides below compose a lit still. */
+
+#runway {
+  background: var(--stage);
+  height: clamp(140px, 22vh, 224px);
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.rw-scene {
+  position: absolute;
+  inset: 0;
+  animation: rw-push 90s var(--ease) infinite alternate;
+  transform-origin: 50% 62%;
+}
+@keyframes rw-push {
+  from { transform: scale(1); }
+  to   { transform: scale(1.055); }
+}
+
+/* backdrop: near-black, the faintest glow rising off the floor */
+.rw-scene::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% 100%, #17150f 0%, transparent 55%),
+    linear-gradient(#0d0c0a, #12100d);
+}
+
+/* licensed/original footage drops in as .rw-film (see index.html seam) */
+#runway video.rw-film {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05) brightness(0.85);
+}
+
+/* the runway floor line */
+.rw-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent, rgba(233, 230, 223, 0.13) 30%,
+    rgba(233, 230, 223, 0.13) 70%, transparent);
+}
+
+/* the slab: the icon's monolith (0.22 x 0.56 of the mark), edge-lit */
+.rw-monolith {
+  position: absolute;
+  left: 41%;
+  bottom: 22%;
+  width: clamp(34px, 9vw, 54px);
+  height: 56%;
+  background: linear-gradient(105deg, #282419 0%, #191711 55%, #121007 100%);
+  box-shadow: -1px 0 0 rgba(233, 230, 223, 0.22);
+}
+.rw-monolith::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 36%;
+  background: linear-gradient(rgba(233, 230, 223, 0.05), transparent 80%);
+}
+
+/* the single spotlight pass: one continuous cut, never a montage */
+.rw-light {
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: 0;
+  width: 55%;
+  transform: translateX(-110%) skewX(-8deg);
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(236, 233, 224, 0.03) 30%,
+    rgba(236, 233, 224, 0.085) 50%,
+    rgba(236, 233, 224, 0.03) 70%,
+    transparent 100%);
+  /* negative delay: the pass is already onstage at first paint */
+  animation: rw-pass 56s linear -18s infinite;
+}
+@keyframes rw-pass {
+  0%   { transform: translateX(-110%) skewX(-8deg); }
+  100% { transform: translateX(292%) skewX(-8deg); }
+}
+
+/* vignette + film grain */
+.rw-veil { position: absolute; inset: 0; }
+.rw-veil::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(130% 100% at 50% 40%, transparent 55%, rgba(5, 5, 4, 0.5) 100%);
+}
+.rw-veil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+}
+
+/* scrolled away or reduced motion: the film holds a lit still */
+#runway.rw-paused * { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .rw-scene { animation: none; }
+  .rw-light { animation: none; transform: translateX(30%) skewX(-8deg); }
+}
+
 /* ----------------------------------------------------------------- chrome */
+/* The top bar continues the film: one ink proscenium, wordmark as the
+   credit line. The bottom tab bar closes the frame. */
 
 #topbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: calc(env(safe-area-inset-top, 0px) + 16px) 18px 15px;
-  border-bottom: 1px solid var(--ink);
+  gap: 2px 12px;
+  padding: calc(env(safe-area-inset-top, 0px) + 15px) 18px 14px;
   position: sticky;
   top: 0;
-  background: var(--bg);
+  background: var(--stage);
+  color: var(--stage-ink);
   z-index: 10;
 }
+/* wordmark block left; budget and account stack on the right */
+#topbar > div:first-child { grid-column: 1; grid-row: 1 / span 2; }
 
 .wordmark {
   font-weight: 300;
@@ -112,13 +239,16 @@ input:focus, select:focus, textarea:focus { outline: none; }
 }
 
 .tagline {
-  font-size: 8px;
-  letter-spacing: 0.34em;
-  color: var(--dim);
+  font-size: 7.5px;
+  letter-spacing: 0.3em;
+  color: var(--stage-dim);
   margin-top: 5px;
+  white-space: nowrap;
 }
 
 button.budget-strip {
+  grid-column: 2;
+  justify-self: end;
   background: none;
   border: none;
   padding: 0;
@@ -128,24 +258,27 @@ button.budget-strip {
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.08em;
-  color: var(--dim);
+  color: var(--stage-dim);
   transition: color var(--dur-fast) var(--ease);
 }
-.budget-strip.over { color: var(--ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.budget-strip.over { color: var(--stage-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 .account-btn {
+  grid-column: 2;
+  justify-self: end;
+  white-space: nowrap;
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.18em;
-  color: var(--dim);
-  border: 1px solid var(--line);
+  color: var(--stage-dim);
+  border: 1px solid var(--stage-line);
   background: transparent;
-  padding: 5px 9px;
-  margin-left: 12px;
+  padding: 4px 8px;
+  margin-top: 5px;
   cursor: pointer;
   transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
-.account-btn:hover { border-color: var(--ink); color: var(--ink); }
+.account-btn:hover { border-color: var(--stage-ink); color: var(--stage-ink); }
 
 #view {
   flex: 1;
