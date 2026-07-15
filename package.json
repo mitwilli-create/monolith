@@ -1,0 +1,30 @@
+{
+  "name": "monolith",
+  "version": "1.0.0",
+  "description": "THE MONOLITH: deterministic wardrobe architect and budget controller. Constraint gates as code, not prompts.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "build:web": "esbuild src/frontend/app.ts --bundle --format=iife --outfile=public/app.js --minify",
+    "build:icons": "node scripts/gen-icons.mjs",
+    "build": "npm run build:web && npm run build:icons",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.90.0",
+    "@clerk/backend": "^3.11.5",
+    "@hono/node-server": "^1.14.0",
+    "hono": "^4.7.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.0",
+    "esbuild": "^0.25.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.8.0",
+    "vitest": "^3.1.0"
+  }
+}

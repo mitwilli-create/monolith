@@ -1,0 +1,113 @@
+{
+  "rules": [
+    {
+      "brand": "Boris Bidjan Saberi",
+      "categories": [
+        "tops",
+        "outerwear"
+      ],
+      "recommendation": "Size up 1–2 full grades from nominal (L → XL/XXL).",
+      "rationale": "BBS block patterns run exceptionally narrow; object-dyed shirts marketed slim. A 44\" measured chest does not fit the nominal grade.",
+      "source": "Sizing matrix · BBS tops"
+    },
+    {
+      "brand": "Boris Bidjan Saberi",
+      "categories": [
+        "bottoms"
+      ],
+      "matchTerms": [
+        "coated",
+        "painter",
+        "denim",
+        "p13",
+        "p10"
+      ],
+      "recommendation": "Mandatory upsize on coated denim and painter pants.",
+      "rationale": "Slim/straight-leg silhouettes with no mechanical tolerance at 200 lb.",
+      "source": "Sizing matrix · BBS bottoms"
+    },
+    {
+      "brand": "Boris Bidjan Saberi",
+      "categories": [
+        "bottoms"
+      ],
+      "recommendation": "Size up at least 1 grade.",
+      "rationale": "Narrow block pattern across the bottoms line.",
+      "source": "Sizing matrix · BBS bottoms (general)"
+    },
+    {
+      "brand": "Rick Owens",
+      "categories": [
+        "outerwear"
+      ],
+      "matchTerms": [
+        "leather",
+        "intarsia",
+        "stooges",
+        "bomber"
+      ],
+      "recommendation": "IT 54 mandatory. Standard IT 52 (XL) insufficient.",
+      "rationale": "Severe architectural restriction in shoulders and high armholes; nominal chest equivalence lies on this block.",
+      "source": "Sizing matrix · Rick Owens leather outerwear"
+    },
+    {
+      "brand": "Rick Owens",
+      "categories": [
+        "bottoms"
+      ],
+      "matchTerms": [
+        "creatch",
+        "cargo",
+        "drawstring",
+        "drkshdw",
+        "pod",
+        "bela"
+      ],
+      "recommendation": "Size DOWN, often to M or S despite the nominal waist tag.",
+      "rationale": "Drop-crotch + elastic waist give massive mechanical tolerance; standard sizing produces excess fabric.",
+      "source": "Sizing matrix · Rick Owens drop-crotch bottoms"
+    },
+    {
+      "brand": "Rick Owens",
+      "categories": [
+        "footwear"
+      ],
+      "matchTerms": [
+        "ramones",
+        "geobasket",
+        "geo basket"
+      ],
+      "recommendation": "Size down 0.5–1 full size from nominal.",
+      "rationale": "Mainline Ramones/Geobaskets run a generous toe box; a US 10 D fits a 9–9.5.",
+      "source": "Sizing matrix · Rick Owens mainline footwear"
+    },
+    {
+      "brand": "Rick Owens",
+      "categories": [
+        "footwear"
+      ],
+      "matchTerms": [
+        "sock",
+        "runner"
+      ],
+      "recommendation": "Size down up to 2 full sizes for the compression fit.",
+      "rationale": "Sock sneakers are engineered for compression; nominal size swims.",
+      "source": "Sizing matrix · Rick Owens sock sneakers"
+    },
+    {
+      "brand": "Maison Margiela",
+      "categories": [
+        "tops",
+        "outerwear"
+      ],
+      "recommendation": "IT 54 minimum. IT 52 only if the textile has significant lateral stretch.",
+      "rationale": "IT grading: 52=XL≈43.3\", 54=XXL≈45.2\", 56=3XL≈47.2\". A 44\" measured chest sits above IT 52 nominal with no margin. Stretch is load-bearing.",
+      "source": "Sizing matrix · Margiela IT conversion"
+    }
+  ],
+  "genericFallback": {
+    "recommendation": "Baseline XL / IT 52–54. Reject slim European L; reject any 'slim fit' cut.",
+    "rationale": "44\" measured chest on a 200 lb frame sits at the L–XL boundary unless the textile stretches; err toward the roomier grade.",
+    "source": "Your biometric baseline (no brand rule on file)"
+  }
+}

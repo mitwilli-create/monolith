@@ -1,0 +1,189 @@
+{
+  "activeProfileId": "example",
+  "profiles": [
+    {
+      "id": "example",
+      "name": "Example",
+      "biometrics": {
+        "heightIn": 72,
+        "weightLb": 200,
+        "chestIn": 44,
+        "bustIn": 43.5,
+        "waistIn": 40,
+        "tagPantWaistIn": 34,
+        "shoe": {
+          "us": 10,
+          "width": "D"
+        },
+        "thermal": "runs-hot"
+      },
+      "location": {
+        "city": "Seattle",
+        "region": "WA",
+        "zip": "98101",
+        "lat": 47.61,
+        "lon": -122.33
+      },
+      "aesthetic": {
+        "doctrine": "Luxurious Brutalist / Industrial Architect",
+        "approvedSignals": [
+          "avant-garde",
+          "object-dyed",
+          "garment-dyed",
+          "acid-dyed",
+          "hand-dyed",
+          "sculptural",
+          "drop-crotch",
+          "waxed",
+          "raw denim",
+          "utilitarian",
+          "monochrome",
+          "asymmetric",
+          "deconstructed"
+        ],
+        "bannedAesthetics": [
+          {
+            "key": "hypebeast",
+            "label": "Hypebeast / logocentric",
+            "markers": [
+              "logo print",
+              "all-over logo",
+              "logo tee",
+              "streetwear graphic",
+              "collab drop",
+              "box logo"
+            ]
+          },
+          {
+            "key": "basic-office",
+            "label": "Basic Office",
+            "markers": [
+              "chino",
+              "broadcloth",
+              "non-iron",
+              "business casual",
+              "khaki",
+              "polo shirt"
+            ]
+          },
+          {
+            "key": "suburban-dad",
+            "label": "Suburban Dad casual",
+            "markers": [
+              "cargo short",
+              "windbreaker",
+              "relaxed dad",
+              "golf",
+              "fleece vest",
+              "performance stretch"
+            ]
+          }
+        ],
+        "bannedBrands": [
+          "Ader Error"
+        ],
+        "bannedFitTerms": [
+          "slim fit",
+          "slim-fit",
+          "skinny fit",
+          "skinny-fit"
+        ]
+      },
+      "materialRules": {
+        "banned": [
+          {
+            "match": [
+              "suede"
+            ],
+            "unless": [
+              "treated",
+              "waterproof",
+              "hydrophobic",
+              "waxed"
+            ],
+            "reason": "Untreated suede: water damage in a 38\"/yr rain climate."
+          },
+          {
+            "match": [
+              "silk"
+            ],
+            "unless": [
+              "lining",
+              "lined"
+            ],
+            "reason": "Delicate outdoor silk: spotting risk and thermally inadequate Nov–Mar."
+          },
+          {
+            "match": [
+              "dragging hem",
+              "floor-length",
+              "puddle hem"
+            ],
+            "reason": "Dragging hems wick water by capillary action on wet pavement."
+          }
+        ],
+        "flagged": [
+          {
+            "match": [
+              "polyester",
+              "acrylic",
+              "nylon"
+            ],
+            "unless": [
+              "ripstop",
+              "shell",
+              "coated",
+              "mesh",
+              "lining",
+              "lined"
+            ],
+            "reason": "Non-breathable synthetic against a runs-hot / high-perspiration profile. Verify ventilation."
+          },
+          {
+            "match": [
+              "unlined leather",
+              "heavy leather"
+            ],
+            "reason": "Heavy unlined leather is a narrow-window garment in transitional Seattle seasons."
+          }
+        ],
+        "preferred": [
+          {
+            "match": [
+              "waxed cotton",
+              "waxed canvas"
+            ],
+            "reason": "Hydrophobic, develops patina: top-tier Seattle material."
+          },
+          {
+            "match": [
+              "wool"
+            ],
+            "reason": "Thermal regulation even when damp."
+          },
+          {
+            "match": [
+              "object-dyed",
+              "garment-dyed",
+              "heavy cotton twill",
+              "coated denim"
+            ],
+            "reason": "Doctrine-aligned finish; wears in, not out."
+          },
+          {
+            "match": [
+              "treated leather",
+              "waterproof leather"
+            ],
+            "reason": "Chemically treated leather clears the Seattle filter."
+          }
+        ]
+      },
+      "budget": {
+        "monthlyUsd": 600,
+        "hardStop": true
+      },
+      "campaign": null
+    }
+  ]
+}

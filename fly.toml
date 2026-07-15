@@ -1,0 +1,37 @@
+# MONOLITH on Fly.io — scrappy multi-user beta.
+# One small machine, one volume. Secrets (never here): fly secrets set
+# ANTHROPIC_API_KEY=... CLERK_PUBLISHABLE_KEY=... CLERK_SECRET_KEY=...
+# GOOGLE_CLIENT_ID=... GOOGLE_CLIENT_SECRET=... GOOGLE_REDIRECT_URI=...
+
+app = "monolith-beta"
+# Seattle (sea) is no longer a Fly region; sjc is the nearest. Volume region
+# MUST match this value.
+primary_region = "sjc"
+
+[build]
+
+[env]
+  MONOLITH_BIND = "0.0.0.0"
+  MONOLITH_PORT = "4600"
+  MONOLITH_DATA_DIR = "/data"
+
+[[mounts]]
+  source = "monolith_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 4600
+  force_https = true
+  # The store is a per-process JSON-file layer with in-process locks:
+  # exactly ONE machine, always on. fly.toml cannot cap machine count, so
+  # the enforcement is operational: keep exactly one monolith_data volume
+  # (scale-out cannot attach without one) and `fly scale count 1` after any
+  # deploy change — see docs/SHIP-RUNBOOK.md. Never scale horizontally
+  # without first moving the store to shared storage.
+  auto_stop_machines = "off"
+  auto_start_machines = true
+  min_machines_running = 1
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

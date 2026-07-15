@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "monolith",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "port": 4600
+    },
+    {
+      "name": "monolith-fake-auth",
+      "runtimeExecutable": "env",
+      "runtimeArgs": ["MONOLITH_FAKE_AUTH=1", "npm", "start"],
+      "port": 4600
+    }
+  ]
+}

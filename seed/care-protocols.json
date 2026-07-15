@@ -1,0 +1,68 @@
+{
+  "protocols": [
+    {
+      "id": "rewax",
+      "label": "Re-wax",
+      "materialMatch": ["waxed cotton", "waxed canvas", "waxed"],
+      "intervalDays": 270,
+      "directive": "Re-wax with the maker's dressing (Barbour/Otter Wax class). Warm the wax, work into seams and creases, cure warm overnight.",
+      "rainSensitive": false
+    },
+    {
+      "id": "leather-condition",
+      "label": "Condition leather",
+      "materialMatch": ["leather", "lambskin", "calfskin", "cowhide", "horsehide"],
+      "intervalDays": 120,
+      "directive": "Clean with a barely-damp cloth, then condition (Bick 4 / Saphir class). Never heat-dry. Stuff and air-dry 24h if soaked.",
+      "rainSensitive": true
+    },
+    {
+      "id": "suede-protect",
+      "label": "Re-proof suede",
+      "materialMatch": ["suede", "nubuck"],
+      "intervalDays": 90,
+      "directive": "Brush with a suede brush, re-apply protector spray. Keep out of sustained rain regardless.",
+      "rainSensitive": true
+    },
+    {
+      "id": "wool-care",
+      "label": "Wool maintenance",
+      "materialMatch": ["wool", "cashmere", "merino", "mohair"],
+      "intervalDays": 60,
+      "directive": "Brush down, air out 24h between wears, de-pill if needed. Wash rarely: cold hand-wash or dry clean once a season.",
+      "rainSensitive": false
+    },
+    {
+      "id": "denim-wash",
+      "label": "Denim wash cycle",
+      "materialMatch": ["denim", "coated denim", "raw denim"],
+      "intervalDays": 180,
+      "directive": "Wash inside-out, cold, minimal detergent, hang dry. Coated denim: spot-clean only unless the coating has already broken in.",
+      "rainSensitive": false
+    },
+    {
+      "id": "object-dye-care",
+      "label": "Object-dyed garment care",
+      "materialMatch": ["object-dyed", "garment-dyed", "acid-dyed", "hand-dyed"],
+      "intervalDays": 180,
+      "directive": "Cold wash separately or spot-clean. Dye transfer is real for the first several washes. Dry flat, out of direct sun.",
+      "rainSensitive": false
+    },
+    {
+      "id": "sneaker-clean",
+      "label": "Clean and inspect footwear",
+      "materialMatch": ["rubber", "canvas", "sneaker"],
+      "intervalDays": 60,
+      "directive": "Clean uppers and midsole, check sole separation, rotate pairs: never two consecutive wet days in the same pair.",
+      "rainSensitive": true
+    },
+    {
+      "id": "general-rotation",
+      "label": "Rotation check",
+      "materialMatch": ["cotton", "twill", "canvas"],
+      "intervalDays": 120,
+      "directive": "Inspect stress points (crotch seams, elbows, pocket corners). Repair early: reweaving beats replacing.",
+      "rainSensitive": false
+    }
+  ]
+}

@@ -1,0 +1,515 @@
+/* MONOLITH: bone and ink. Hairlines, tracked-out miniature caps,
+   monochrome verdicts. The palette of a Rick Owens product page. */
+
+:root {
+  --bg: #e9e6df;
+  --panel: #e9e6df;
+  --line: #c9c5ba;
+  --ink: #141414;
+  --dim: #7c7870;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.55 "Helvetica Neue", -apple-system, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+#topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: calc(env(safe-area-inset-top, 0px) + 18px) 18px 14px;
+  border-bottom: 1px solid var(--ink);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+}
+
+.wordmark {
+  font-weight: 400;
+  letter-spacing: 0.55em;
+  font-size: 13px;
+}
+
+.tagline {
+  font-size: 7.5px;
+  letter-spacing: 0.34em;
+  color: var(--dim);
+  margin-top: 4px;
+}
+
+.budget-strip {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+}
+.budget-strip.over { color: var(--ink); font-weight: 700; text-decoration: underline; }
+
+#view {
+  flex: 1;
+  padding: 22px 18px calc(env(safe-area-inset-bottom, 0px) + 92px);
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  border-top: 1px solid var(--ink);
+  background: var(--bg);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  z-index: 10;
+}
+
+#tabbar button {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--dim);
+  font: 400 10px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3em;
+  padding: 19px 0 17px;
+  cursor: pointer;
+  text-indent: 0.3em; /* optically recenter tracked text */
+}
+#tabbar button.active { color: var(--bg); background: var(--ink); }
+
+h2.section {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--dim);
+  margin: 30px 0 12px;
+  font-weight: 400;
+}
+h2.section:first-child { margin-top: 4px; }
+
+.panel {
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 18px 16px;
+  margin-bottom: 14px;
+}
+
+input, select, textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font: 14px/1.4 var(--mono);
+  padding: 10px 2px;
+  margin-bottom: 14px;
+  border-radius: 0;
+  appearance: none;
+}
+input::placeholder, textarea::placeholder { color: #b3afa4; }
+input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); }
+textarea { border: 1px solid var(--line); padding: 10px; }
+label {
+  display: block;
+  font: 400 9px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3em;
+  color: var(--dim);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+button.cta {
+  width: 100%;
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  font: 400 11px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+  padding: 17px 0 16px;
+  cursor: pointer;
+  border-radius: 0;
+}
+button.cta:disabled { opacity: 0.35; }
+button.ghost {
+  width: 100%;
+  background: none;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  font: 400 10px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  padding: 13px 0 12px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button.mini {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font: 400 9px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.18em;
+  padding: 9px 10px 8px;
+  cursor: pointer;
+}
+
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* Verdict card, monochrome states: solid = rejected, outline = approved,
+   dashed = insufficient. The word carries the weight. */
+.verdict { border: 1px solid var(--ink); margin: 16px 0; background: transparent; }
+.verdict .head {
+  padding: 22px 16px;
+  font: 400 19px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.45em;
+}
+.verdict.approve .head { background: transparent; color: var(--ink); border-bottom: 1px solid var(--ink); }
+.verdict.reject .head { background: var(--ink); color: var(--bg); }
+.verdict.insufficient { border-style: dashed; }
+.verdict.insufficient .head { background: transparent; color: var(--ink); border-bottom: 1px dashed var(--ink); }
+.verdict .sub { padding: 12px 16px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--dim); }
+.verdict .block { padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.verdict .block:last-child { border-bottom: none; }
+.verdict .block h4 {
+  font: 400 9px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.35em;
+  color: var(--dim);
+  margin-bottom: 10px;
+}
+
+.finding { font-size: 13px; margin-bottom: 8px; padding-left: 16px; position: relative; }
+.finding::before { content: "·"; position: absolute; left: 0; color: var(--dim); }
+.finding.violation { color: var(--ink); font-weight: 600; }
+.finding.violation::before { content: "✕"; color: var(--ink); font-weight: 400; }
+.finding.note { color: var(--dim); font-weight: 400; }
+.finding.good { color: var(--ink); font-weight: 400; }
+.finding.good::before { content: "+"; }
+.finding .src { display: block; font: 9px/1.6 var(--mono); letter-spacing: 0.04em; color: #a09c91; }
+
+.gate-line { display: flex; gap: 12px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; padding: 4px 0; }
+.gate-line .status { font-weight: 700; min-width: 34px; }
+.gate-line .pass { color: var(--ink); }
+.gate-line .fail { color: var(--ink); text-decoration: underline; }
+
+/* Lists */
+.item-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.item-row:last-child { border-bottom: none; }
+.item-row .meta { font: 10px/1.6 var(--mono); letter-spacing: 0.03em; color: var(--dim); }
+.item-row .title { font-weight: 500; font-size: 13.5px; letter-spacing: 0.02em; }
+.item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+.bar { height: 1px; background: var(--line); position: relative; margin: 14px 0; }
+.bar .fill { position: absolute; top: -1px; bottom: -1px; left: 0; background: var(--ink); }
+.bar .fill.over { background: var(--ink); }
+
+.alert { border: 1px solid var(--ink); padding: 14px; font-size: 13px; margin-bottom: 14px; color: var(--ink); }
+.alert.warn { background: var(--ink); color: var(--bg); }
+.alert.warn .finding, .alert.warn .finding::before { color: var(--bg); }
+
+/* Care state worn by the vault rows it protects (CARE demoted into VAULT). */
+.care-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.care-badge {
+  display: inline-block;
+  border: 1px solid var(--ink);
+  padding: 2px 7px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+.care-badge.warn { background: var(--ink); color: var(--bg); }
+
+/* One-tap wear log: the evening bar docked above the tabbar. */
+.wear-prompt {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 62px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: var(--bg);
+  border-top: 1px solid var(--ink);
+  padding: 12px 18px 14px;
+  max-height: 45vh;
+  overflow-y: auto;
+}
+.wear-prompt .wp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 400 10px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3em;
+  color: var(--dim);
+  margin-bottom: 10px;
+}
+.wear-prompt .wp-x {
+  background: none;
+  border: none;
+  color: var(--dim);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+.wear-prompt .wp-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
+.wear-prompt .wp-chip {
+  border: 1px solid var(--line);
+  background: none;
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+.wear-prompt .wp-chip.on { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+.wear-prompt .wp-actions { display: flex; gap: 8px; align-items: center; }
+.wear-prompt .wp-actions .cta { flex: 1; margin: 0; }
+.wear-prompt .wp-actions .ghost { width: auto; margin: 0; flex-shrink: 0; }
+
+.empty {
+  color: var(--dim);
+  font: 400 10px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3em;
+  padding: 26px 0;
+  text-align: center;
+}
+
+.toast {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 100px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: var(--bg);
+  font: 400 10px/1.5 var(--mono);
+  letter-spacing: 0.12em;
+  padding: 13px 20px;
+  z-index: 50;
+  max-width: 90vw;
+}
+
+.muted { color: var(--dim); font-size: 11.5px; }
+.mono { font-family: var(--mono); }
+
+details.manual summary {
+  font: 400 10px/1 "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3em;
+  color: var(--dim);
+  cursor: pointer;
+  padding: 12px 0 2px;
+  list-style: none;
+}
+details.manual summary::-webkit-details-marker { display: none; }
+details.manual[open] summary { margin-bottom: 12px; }
+
+@media (min-width: 720px) {
+  #tabbar { max-width: 720px; margin: 0 auto; border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); }
+}
+
+/* --- blind-review round 2 additions --- */
+
+/* Tab subtitles: function under the in-world name (#2) */
+#tabbar button { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+#tabbar .tabsub {
+  font-size: 7.5px;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: inherit;
+  opacity: 0.55;
+  text-indent: 0;
+}
+
+/* Budget strip is a real button now (#1, #17) */
+button.budget-strip {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Disclosure affordance on MANUAL ENTRY and other details (#8) */
+details.manual > summary { list-style: none; }
+details.manual > summary::-webkit-details-marker { display: none; }
+details.manual > summary::after { content: "  +"; font-family: var(--mono); }
+details.manual[open] > summary::after { content: "  \2212"; }
+
+/* Destructive mini buttons read as destructive (#12) */
+button.mini.danger { border-color: var(--ink); text-decoration: underline; }
+
+/* Inline import errors (#9) */
+.inline-errors { margin-top: 8px; }
+.inline-errors .finding { font-family: var(--mono); font-size: 11px; }
+
+/* Recorded state replaces the CTA after a successful write (#4) */
+.recorded-state {
+  font: 400 11px/1.6 var(--mono);
+  letter-spacing: 0.06em;
+  padding: 12px 0 2px;
+}
+
+/* --- DECIDE: quest header + prominent nav --- */
+
+.quest-head { margin-bottom: 6px; }
+.quest-title {
+  font: 800 21px/1.3 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 12px 0 10px;
+  color: var(--ink);
+}
+.quest-brief {
+  border-left: 3px solid var(--ink);
+  background: rgba(20, 20, 20, 0.05);
+  padding: 12px 14px;
+}
+.qb-band {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+/* Nav bar: inverted so it never gets lost in the page */
+#tabbar { background: var(--ink); border-top: 2px solid var(--ink); }
+#tabbar button {
+  color: rgba(233, 230, 223, 0.62);
+  font-size: 11.5px;
+  padding: 21px 0 19px;
+}
+#tabbar button.active { background: var(--bg); color: var(--ink); }
+@media (min-width: 720px) {
+  #tabbar { border-left-color: var(--ink); border-right-color: var(--ink); }
+}
+
+/* Top bar: a touch more presence */
+.wordmark { font-size: 15px; font-weight: 700; }
+.tagline { font-size: 8.5px; }
+.wordmark { cursor: pointer; }
+
+/* --- The celebrated yes: an APPROVE is the reward, not a permission slip. --- */
+/* Monochrome by design: the excitement is carried by type weight and the
+   composed affirmation, never color. A confident YES in an austere system
+   lands harder than any accent could. */
+.yes-hero {
+  padding: 20px 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.yes-mark {
+  font: 700 23px/1 var(--mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 11px;
+}
+.yes-line {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink);
+  max-width: 46ch;
+}
+.cpw { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.cpw-num {
+  font: 700 26px/1 var(--mono);
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+.cpw-num .cpw-unit { font-size: 13px; font-weight: 400; letter-spacing: 0.06em; color: var(--dim); }
+.cpw-note {
+  font: 10px/1.6 var(--mono);
+  letter-spacing: 0.03em;
+  color: var(--dim);
+  margin-top: 6px;
+  max-width: 46ch;
+}
+.cpw-note .src { display: block; color: #a09c91; margin-top: 2px; }
+/* The approve head, reworked to feel like an arrival rather than a stamp. */
+.verdict.approve .head { font-weight: 700; letter-spacing: 0.3em; }
+
+/* ---------- Sprint B: sign-in gate + intake ---------- */
+
+/* gate-mode: the tabbar and budget strip stand down until there is a
+   signed-in owner with a profile */
+body.gate-mode #tabbar, body.gate-mode #budget-strip { display: none; }
+
+.account-btn {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--dim);
+  border: 1px solid var(--line);
+  background: transparent;
+  padding: 4px 8px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+.account-btn:hover { border-color: var(--ink); color: var(--ink); }
+
+.auth-gate { max-width: 420px; margin: 10vh auto 0; text-align: center; }
+.auth-gate .gate-copy {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  line-height: 2.1;
+  margin-bottom: 28px;
+}
+.auth-gate .dim { color: var(--dim); font-size: 10px; letter-spacing: 0.18em; }
+#clerk-signin { display: flex; justify-content: center; }
+
+.intake { max-width: 460px; margin: 6vh auto 0; }
+.istep-count {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--dim);
+  margin-bottom: 18px;
+}
+.ititle { font-size: 15px; font-weight: 400; letter-spacing: 0.45em; margin-bottom: 10px; }
+.isub { color: var(--dim); font-size: 12px; margin-bottom: 26px; max-width: 40ch; }
+.ilbl {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--ink);
+  margin: 18px 0 6px;
+}
+.ilbl .dim { color: var(--dim); text-transform: none; letter-spacing: 0.08em; }
+.intake input, .intake textarea { width: 100%; }
+.igrid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.georow { display: flex; gap: 8px; align-items: stretch; }
+.georow input { flex: 1; }
+.georow .ghost { width: auto; flex-shrink: 0; margin-top: 0; padding-left: 18px; padding-right: 18px; }
+#it-geo-results { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; min-height: 24px; }
+.geo-pick.picked, .therm.picked, .stopb.picked, .mini.picked {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.ichoice { display: flex; flex-wrap: wrap; gap: 8px; }
+.ierr { color: var(--ink); font-size: 11px; min-height: 18px; margin-top: 16px; font-weight: 700; }
+.inav { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.istep-note { font-size: 10px; letter-spacing: 0.08em; margin-top: 12px; }
+.ireview { display: grid; gap: 10px; font-size: 12px; }
+.ireview .dim {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .intake { margin-top: 2vh; }
+  .igrid { grid-template-columns: 1fr; }
+}

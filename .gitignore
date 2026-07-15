@@ -1,0 +1,35 @@
+# Personal data: profiles, wardrobe, ledger, verdicts. Never committed.
+data/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Build artifacts
+node_modules/
+public/app.js
+public/icons/*.png
+dist/
+
+# OS
+.DS_Store
+
+# Local Claude session config
+.claude/settings.local.json
+
+# Vendor-installed agent tooling (`clerk skill install`) and its symlinks:
+# local dev machinery, not product source. Lives outside version control
+# like node_modules.
+.agents/
+.claude/skills/clerk
+.claude/skills/clerk-backend-api
+.claude/skills/clerk-cli
+
+# Beta watch reports carry per-user behavior; worktrees are scratch.
+.claude/beta-watch/
+.claude/worktrees/
+
+# Session handoff notes: working notes between Claude instances, often
+# carrying real wardrobe/spend history, absolute paths, and account details.
+.claude/HANDOFF-*.md

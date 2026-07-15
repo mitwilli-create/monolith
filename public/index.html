@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#e9e6df" />
+  <meta name="color-scheme" content="light" />
+  <title>MONOLITH</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+  <header id="topbar">
+    <div>
+      <div class="wordmark">MONOLITH</div>
+      <div class="tagline">VERDICT · FIT · OWN · SPEND</div>
+    </div>
+    <button id="budget-strip" class="budget-strip" type="button" title="Open CAPITAL">–</button>
+  </header>
+
+  <main id="view"></main>
+
+  <nav id="tabbar">
+    <button data-tab="verdict" class="active">VERDICT<span class="tabsub">buy · compare</span></button>
+    <button data-tab="size">SIZE<span class="tabsub">fit</span></button>
+    <button data-tab="vault">VAULT<span class="tabsub">closet · upkeep</span></button>
+    <button data-tab="capital">CAPITAL<span class="tabsub">spend</span></button>
+  </nav>
+
+  <script src="/app.js"></script>
+</body>
+</html>
