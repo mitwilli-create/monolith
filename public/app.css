@@ -493,6 +493,18 @@ button.mini.danger { border-color: var(--ink); text-decoration: underline; text-
   border-bottom: 1px solid var(--line);
 }
 .item-row:last-child { border-bottom: none; }
+
+/* rows that act as buttons invite quietly */
+.item-row[role="button"] {
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+@media (hover: hover) {
+  .item-row[role="button"]:hover { background: rgba(20, 20, 20, 0.04); }
+}
 .item-row .meta { font: 10px/1.7 var(--mono); letter-spacing: 0.03em; color: var(--dim); }
 .item-row .title { font-weight: 500; font-size: 13.5px; letter-spacing: 0.02em; }
 .item-actions { display: flex; gap: 6px; flex-shrink: 0; }
