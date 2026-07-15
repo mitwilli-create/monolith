@@ -646,7 +646,7 @@ function scoreBreakdownHtml(qc: any, quest: any): string {
 }
 
 async function renderVerdictSurface(): Promise<void> {
-  view.innerHTML = `<div class="empty">LOADING…</div>`;
+  view.innerHTML = `<div class="empty loading">LOADING…</div>`;
   let quests: any, receipts: any;
   try {
     [quests, receipts] = await Promise.all([api("/api/quests"), api("/api/decisions")]);
@@ -1383,9 +1383,9 @@ async function renderVault(): Promise<void> {
       <h2 class="section">WARDROBE VAULT: WHAT YOU OWN</h2>
       <div id="v-care"></div>
       <button class="ghost" id="v-wear-today" style="margin:0 0 14px">LOG TODAY'S WEAR · ONE TAP</button>
-      <div class="panel" id="v-list"><div class="empty">LOADING…</div></div>
+      <div class="panel" id="v-list"><div class="empty loading">LOADING…</div></div>
       <h2 class="section">INVISIBLE IN · ORDER EMAILS</h2>
-      <div class="panel" id="v-ingest"><div class="empty">CHECKING…</div></div>
+      <div class="panel" id="v-ingest"><div class="empty loading">CHECKING…</div></div>
       <h2 class="section">ADD A PIECE</h2>
       <div class="panel">
         <div class="row2">
@@ -1559,7 +1559,7 @@ async function renderCapital(): Promise<void> {
     <div>
       <h2 class="section">BUDGET · ${monthLabel(s.month)} ${s.month.slice(0, 4)}</h2>
       <div class="panel">
-        <div class="mono" style="font-size:26px;font-weight:800">${usd(s.remainingUsd)} <span style="font-size:12px;color:var(--dim)">LEFT TO SPEND</span></div>
+        <div class="capital-num">${usd(s.remainingUsd)} <span class="capital-unit">LEFT TO SPEND</span></div>
         <div class="bar"><div class="fill ${s.remainingUsd < 0 ? "over" : ""}" style="width:${pct}%"></div></div>
         <div class="muted mono">${usd(s.spentUsd)} spent of ${usd(s.budgetUsd)} monthly budget · resets on the 1st</div>
         <div class="row2" style="margin-top:12px">
@@ -2124,6 +2124,7 @@ async function renderIntake(): Promise<void> {
     const scope = el(`
       <div class="intake">
         <div class="istep-count">${String(step + 1).padStart(2, "0")} / ${String(steps.length).padStart(2, "0")}</div>
+        <div class="ibar" aria-hidden="true"><span style="width:${Math.round(((step + 1) / steps.length) * 100)}%"></span></div>
         <h2 class="ititle">${s.title}</h2>
         <p class="isub">${s.sub}</p>
         <div class="ibody">${s.body()}</div>
