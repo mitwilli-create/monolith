@@ -624,6 +624,14 @@ button.mini.danger { border-color: var(--ink); text-decoration: underline; text-
   margin-bottom: 9px;
 }
 
+/* the composite score: the decisive numeral reads like a bib number */
+.score-num {
+  font: 300 clamp(24px, 6.4vw, 30px)/1 var(--mono);
+  letter-spacing: 0;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
 /* --------------------------------------------------------- wear prompt */
 
 /* One-tap wear log: the evening bar docked above the tabbar. */

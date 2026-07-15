@@ -796,7 +796,7 @@ function questDetailEl(quest: any): HTMLElement {
               <div class="title">${rec ? "► " : ""}#${i + 1} · ${esc(qc.candidate.brand)}, ${esc(qc.candidate.name)}${gateTag}</div>
               <div class="meta">${usd(qc.candidate.priceUsd)}${qc.candidate.platform ? ` · ${esc(qc.candidate.platform)}` : ""} · added ${esc(qc.addedAt.slice(0, 10))}</div>
             </div>
-            <span class="mono" style="font-size:16px;font-weight:800;flex-shrink:0">${qc.score.total}</span>
+            <span class="score-num">${qc.score.total}</span>
           </div>
           ${qc.candidate.digest ? `<div class="meta" style="margin-top:7px;color:var(--ink);line-height:1.5">${esc(qc.candidate.digest)}</div>` : ""}
           ${qc.rationale ? `<div class="finding note" style="margin-top:7px">${esc(qc.rationale)}<span class="src">composed from your quest, profile, and vault: src/quests.ts</span></div>` : ""}
