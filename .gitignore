@@ -20,11 +20,14 @@ dist/
 
 # Vendor-installed agent tooling (`clerk skill install`) and its symlinks:
 # local dev machinery, not product source. Lives outside version control
-# like node_modules.
+# like node_modules. skills-lock.json is this tooling's manifest, NOT a
+# dependency lockfile (that is package-lock.json, which stays tracked);
+# nothing in build, test, or deploy reads it.
 .agents/
 .claude/skills/clerk
 .claude/skills/clerk-backend-api
 .claude/skills/clerk-cli
+skills-lock.json
 
 # Beta watch reports carry per-user behavior; worktrees are scratch.
 .claude/beta-watch/

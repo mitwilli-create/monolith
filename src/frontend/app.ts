@@ -1326,7 +1326,9 @@ async function loadIngestPanel(): Promise<void> {
     try {
       const r = await api("/api/ingest/sync", { method: "POST", body: JSON.stringify({}) });
       const rep = r.report;
-      toast(`SYNC DONE: ${rep.proposed} PROPOSED · ${rep.notApparel} NOT APPAREL · ${rep.skippedPrefilter} SKIPPED${rep.duplicates ? ` · ${rep.duplicates} DUPLICATE${rep.duplicates === 1 ? "" : "S"} COLLAPSED` : ""}${rep.failures.length ? ` · ${rep.failures.length} FAILED` : ""}${rep.moreRemaining ? " · MORE MAIL REMAINS: SYNC AGAIN TO GO DEEPER" : ""}`);
+      // capReached wins over moreRemaining: once today's reading limit is
+      // spent, "sync again to go deeper" would be a lie until tomorrow.
+      toast(`SYNC DONE: ${rep.proposed} PROPOSED · ${rep.notApparel} NOT APPAREL · ${rep.skippedPrefilter} SKIPPED${rep.duplicates ? ` · ${rep.duplicates} DUPLICATE${rep.duplicates === 1 ? "" : "S"} COLLAPSED` : ""}${rep.failures.length ? ` · ${rep.failures.length} FAILED` : ""}${rep.capReached ? " · DAILY READING LIMIT REACHED: MONOLITH READS AGAIN TOMORROW" : rep.moreRemaining ? " · MORE MAIL REMAINS: SYNC AGAIN TO GO DEEPER" : ""}`);
       if (rep.failures.length) console.warn("ingest failures:", rep.failures);
       loadIngestPanel();
     } catch (e) {
@@ -2234,6 +2236,10 @@ async function boot(): Promise<void> {
     }
   }
   if (auth.multiuser) {
+    // Beta feedback line: multi-user servers only. The local single-user
+    // operator needs no mailto to reach himself. Revealed before the
+    // sign-in gate so someone stuck AT the gate can still reach us.
+    document.getElementById("beta-footer")?.removeAttribute("hidden");
     if (auth.fakeAuth) {
       mountAccountControls({ user: readFakeUser() });
     } else {

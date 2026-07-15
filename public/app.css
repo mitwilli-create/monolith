@@ -288,6 +288,19 @@ button.budget-strip {
   margin: 0 auto;
 }
 
+/* Beta feedback line. Sits in flow after #view, so it needs its own
+   clearance under the fixed tabbar. Hidden via [hidden] until boot()
+   confirms a multi-user server. */
+#beta-footer {
+  text-align: center;
+  color: var(--dim);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0 18px calc(env(safe-area-inset-bottom, 0px) + 84px);
+}
+#beta-footer a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
 #tabbar {
   position: fixed;
   bottom: 0;
